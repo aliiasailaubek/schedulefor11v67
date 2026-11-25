@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Факультатив кезегі</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Unbounded:wght@500;700&family=Caveat:wght@600&display=swap">
+<style id="fk-css">
+/* Layout: one phone-first column; the two groups take the flag's sky blue and sun gold */
+:root {
+  --bg: #F2F5F7;
+  --surface: #FFFFFF;
+  --ink: #0F2129;
+  --muted: #566871;
+  --line: #D9E2E6;
+  --soft: #E9EFF2;
+  --g1: #006F89;
+  --g1-soft: #DDF2F7;
+  --g1-fill: #00AFCA;
+  --g2: #855700;
+  --g2-soft: #FFF0C2;
+  --g2-fill: #F5BD0A;
+  --on-fill: #0F2129;
+  --warn: #A33A2B;
+  --warn-soft: #FBE6E2;
+  --paper: #FBFAF6;
+  --paper-ink: #24313A;
+  --tape1: rgba(245, 189, 10, .6);
+  --tape2: rgba(0, 175, 202, .45);
+  --scrim: rgba(8, 14, 18, .92);
+  --on-scrim: #FFFFFF;
+  --hand: "Caveat", "Segoe Print", "Comic Sans MS", cursive;
+  --display: "Unbounded", "Golos Text", system-ui, sans-serif;
+  --body: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D191F; --surface: #14242C; --ink: #E6EEF1; --muted: #93A6AF; --line: #25373F; --soft: #1B2E37;
+    --g1: #5FD6EC; --g1-soft: #0F3742; --g2: #FFD45C; --g2-soft: #3A2F0E;
+    --warn: #F29A8C; --warn-soft: #3D1F1A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D191F; --surface: #14242C; --ink: #E6EEF1; --muted: #93A6AF; --line: #25373F; --soft: #1B2E37;
+  --g1: #5FD6EC; --g1-soft: #0F3742; --g2: #FFD45C; --g2-soft: #3A2F0E;
+  --warn: #F29A8C; --warn-soft: #3D1F1A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.5 var(--body); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, dl, dd, ol { margin: 0; }
+button, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--g1-fill); outline-offset: 2px; border-radius: 8px; }
+
+.wrap {
+  max-width: 760px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 140px;
+  display: grid; gap: 36px;
+}
+section { display: grid; gap: 14px; min-width: 0; }
+h2 { font: 700 17px/1.3 var(--display); letter-spacing: -0.01em; }
+.hint { color: var(--muted); font-size: 14px; max-width: 60ch; }
+
+/* header */
+.top { display: grid; gap: 14px; }
+.top-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 clamp(26px, 7vw, 40px)/1.12 var(--display); letter-spacing: -0.02em; text-wrap: balance; }
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.rules > div { display: grid; gap: 4px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.rules dt { font: 600 12px/1.3 var(--body); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.rules dd { display: grid; min-width: 0; }
+.rules dd b { font-weight: 600; }
+.rules dd span { color: var(--muted); font-size: 14px; }
+.notice { padding: 12px 14px; border-radius: 14px; background: var(--g2-soft); font-size: 15px; }
+.notice b { font-weight: 600; }
+
+/* buttons */
+.btn { appearance: none; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 8px 14px; font-weight: 600; font-size: 14px; cursor: pointer; line-height: 1.3; }
+.btn:hover { background: var(--soft); }
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn.primary:hover { opacity: .9; }
+.btn.wide { justify-self: start; }
+.btn.tiny { padding: 4px 9px; font-size: 13px; border-radius: 8px; }
+.btn[disabled] { opacity: .5; cursor: default; }
+
+/* next lessons */
+.next { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.ncard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: grid; gap: 14px; }
+.ncard .subj { font-weight: 600; font-size: 18px; }
+.ncard .when { color: var(--muted); font-size: 15px; }
+.ncard .when b { color: var(--ink); font-weight: 600; }
+.gbadge { display: flex; align-items: center; gap: 12px; }
+.num { flex: none; width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; font: 700 22px/1 var(--display); color: var(--on-fill); }
+.g1 .num, .num.g1 { background: var(--g1-fill); }
+.g2 .num, .num.g2 { background: var(--g2-fill); }
+.gbadge .gname { font: 700 17px/1.2 var(--display); }
+.gbadge .gsub { color: var(--muted); font-size: 13px; }
+
+/* me */
+.me-card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: grid; gap: 10px; justify-items: start; }
+.me-top { display: flex; gap: 12px; align-items: center; }
+.me-hi { font: 700 20px/1.2 var(--display); }
+.me-sub { color: var(--muted); font-size: 14px; }
+.me-next b { font-weight: 600; }
+.me-note { color: var(--muted); font-size: 13px; }
+.me-pick { display: grid; gap: 10px; padding: 16px; border-radius: 18px; background: var(--soft); }
+.me-label { font-weight: 600; }
+.me-select { width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: 16px; }
+.you { display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 6px; background: var(--ink); color: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; vertical-align: 2px; }
+.names .me { font-weight: 700; }
+.copy { justify-self: start; }
+.copy-box { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); font-size: 14px; resize: vertical; }
+
+/* one small polaroid per section */
+.hero-row, .sec-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 14px; }
+.sec-row > div { min-width: 0; }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 14px; }
+.sec-head > div { display: grid; gap: 6px; min-width: 0; }
+.snap { position: relative; flex: none; width: 64px; padding: 3px 3px 11px; margin: 4px 6px 0 0; border: 0; border-radius: 2px; background: var(--paper); cursor: zoom-in;
+  box-shadow: 0 1px 2px rgba(0,0,0,.16), 0 8px 16px -8px rgba(15,33,41,.5); transform: rotate(var(--r, 0deg)); transition: transform .18s ease; }
+.snap img { display: block; width: 100%; max-width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 30%; }
+.snap.tall img { aspect-ratio: 3 / 5; object-position: 50% 25%; }
+.snap.big { width: 86px; }
+.snap::before { content: ""; position: absolute; top: -7px; left: 50%; width: 34px; height: 12px; transform: translateX(-50%) rotate(-5deg); background: var(--tape1); border-radius: 2px; }
+.find .snap::before, .foot .snap::before, .snap.tall::before { background: var(--tape2); transform: translateX(-50%) rotate(4deg); }
+.snap:hover, .snap:focus-visible { z-index: 5; transform: rotate(0deg) scale(1.15); }
+.flip { grid-template-columns: auto minmax(0, 1fr); }
+.flip > .snap { order: -1; margin: 4px 0 0 6px; width: 72px; }
+.flip > .snap.tall { width: 64px; }
+#fk-me-sec .snap { margin-top: -10px; }
+.find .snap { margin-top: 10px; }
+@media (min-width: 640px) { .snap { width: 82px; } .snap.big { width: 112px; } .flip > .snap { width: 92px; } .flip > .snap.tall { width: 80px; } }
+
+/* footer */
+.foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 14px; padding-top: 18px; border-top: 1px solid var(--line); }
+.foot-sign { font: 600 28px/1.1 var(--hand); }
+.foot-note { color: var(--muted); font-size: 13px; }
+.lb { position: fixed; inset: 0; z-index: 30; background: var(--scrim); display: grid; place-items: center;
+  padding: calc(56px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb[hidden] { display: none; }
+.lb figure { margin: 0; display: grid; gap: 12px; justify-items: center; min-width: 0; }
+.lb img { max-width: 100%; max-height: 78vh; border-radius: 6px; }
+.lb figcaption { color: var(--on-scrim); font: 600 26px/1.15 var(--hand); text-align: center; }
+.lb-close { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); appearance: none; border: 1px solid rgba(255,255,255,.35); background: transparent; color: var(--on-scrim); border-radius: 10px; padding: 8px 14px; font-weight: 600; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .snap { transition: none; } }
+
+/* finder */
+.find input { width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: 16px; }
+.found { display: grid; gap: 8px; }
+.found:empty { display: none; }
+.hit { display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
+.hit .num { width: 34px; height: 34px; font-size: 16px; border-radius: 10px; }
+.hit div { min-width: 0; }
+.hit .who { font-weight: 600; }
+.hit .nxt { color: var(--muted); font-size: 14px; }
+.hit .btn { margin-left: auto; flex: none; }
+.found .none { color: var(--muted); font-size: 14px; }
+
+/* groups */
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; align-items: start; }
+.gcard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.gcard .gnext { font-size: 14px; color: var(--muted); }
+.gcard .gnext b { color: var(--ink); font-weight: 600; }
+.names { list-style: none; padding: 0; display: grid; border-top: 1px solid var(--line); counter-reset: n; }
+.names li { counter-increment: n; display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.names li::before { content: counter(n); width: 22px; flex: none; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; text-align: right; }
+.names .nm { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.names .acts { display: flex; gap: 6px; flex: none; }
+.empty { color: var(--muted); font-size: 14px; padding: 4px 0; }
+
+/* editor */
+.editor { display: grid; gap: 12px; padding: 16px; border: 1px dashed var(--muted); border-radius: 18px; }
+.ed-block { display: grid; gap: 10px; }
+.ed-label { font-weight: 600; }
+.ed-note { color: var(--muted); font-size: 13px; }
+.editor textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: 16px; resize: vertical; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.ed-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); }
+.seg button { appearance: none; border: 0; background: transparent; padding: 7px 12px; font-weight: 600; font-size: 14px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+/* schedule */
+.weeks { display: grid; gap: 18px; }
+.week { display: grid; gap: 8px; }
+.week header { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.week h3 { font-size: 15px; font-weight: 600; }
+.tag { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--ink); color: var(--bg); }
+.tag.light { background: var(--soft); color: var(--ink); }
+.rows { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.row { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; }
+.row + .row { border-top: 1px solid var(--line); }
+.date { display: grid; justify-items: center; line-height: 1.1; }
+.dnum { font: 700 20px/1 var(--display); font-variant-numeric: tabular-nums; }
+.dwd { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
+.what { min-width: 0; }
+.what .s { font-weight: 600; }
+.what .m { font-size: 13px; color: var(--muted); }
+.who { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-weight: 600; font-size: 14px; white-space: nowrap; }
+.chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.chip.g1 { background: var(--g1-soft); color: var(--g1); }
+.chip.g1::before { background: var(--g1-fill); }
+.chip.g2 { background: var(--g2-soft); color: var(--g2); }
+.chip.g2::before { background: var(--g2-fill); }
+.chip.x { background: var(--warn-soft); color: var(--warn); }
+.dash { color: var(--muted); padding-right: 10px; }
+.row.past { opacity: .5; }
+.row.off .what .s, .row.off .dnum { color: var(--muted); }
+.row.cancelled .what .s { text-decoration: line-through; text-decoration-thickness: 1.5px; }
+
+/* save bar */
+.bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 1px solid var(--line);
+  padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.bar-in { max-width: 728px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 10px 14px; flex-wrap: wrap; }
+.bar-in span { font-size: 14px; color: var(--muted); min-width: 0; }
+.bar-btns { display: flex; gap: 8px; }
+.flash { padding: 10px 14px; border-radius: 12px; background: var(--soft); font-size: 14px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="app" class="wrap">
+  <header class="top">
+    <div class="top-row">
+      <p class="eyebrow">Факультативтер · 2 топ кезекпен</p>
+      <button class="btn" id="fk-edit" type="button" hidden>Өңдеу</button>
+    </div>
+    <div class="hero-row">
+      <h1>Факультатив кезегі</h1>
+    </div>
+    <dl class="rules">
+      <div><dt>Дс · 8-сабақ</dt><dd><b>Қазақстан тарихы</b><span>әр апта сайын, айына 4 рет</span></dd></div>
+      <div><dt>Жм · 7-сабақ</dt><dd><b>Заң мен тәртіп</b><span>екі аптада бір рет, айына 2 рет</span></dd></div>
+    </dl>
+    <p class="notice" id="fk-notice" hidden></p>
+    <p class="flash" id="fk-flash" hidden></p>
+  </header>
+
+  <section id="fk-me-sec" aria-label="Менің сабақтарым">
+    <div class="sec-row">
+      <div id="fk-me"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-next">
+    <div class="sec-head">
+      <div><h2 id="h-next">Жақын сабақтар</h2></div>
+    </div>
+    <div class="next" id="fk-next"></div>
+  </section>
+
+  <section class="find" aria-labelledby="h-find">
+    <div class="sec-head">
+      <div><h2 id="h-find">Мен қай топтамын?</h2></div>
+    </div>
+    <label for="fk-find" class="sr">Аты немесе тегі</label>
+    <input id="fk-find" type="search" placeholder="Атыңды немесе тегіңді жаза баста" autocomplete="off">
+    <div class="found" id="fk-found" aria-live="polite"></div>
+  </section>
+
+  <section aria-labelledby="h-sched">
+    <div class="sec-head">
+      <div><h2 id="h-sched">Апталар бойынша кесте</h2>
+      <p class="hint">Сабақ болмай қалса, кезек жылжымайды: осы пәннің келесі сабағына сол топ барады.</p></div>
+    </div>
+    <div class="weeks" id="fk-weeks"></div>
+    <button class="btn wide" id="fk-more" type="button">Тағы 8 аптаны көрсету</button>
+  </section>
+
+  <section aria-labelledby="h-groups">
+    <div class="sec-head">
+      <div><h2 id="h-groups">Топтар</h2></div>
+    </div>
+    <div class="editor" id="fk-editor" hidden>
+      <div class="ed-block">
+        <label for="fk-add" class="ed-label">Оқушыларды қосу, әрқайсысын жаңа жолдан жазыңыз</label>
+        <textarea id="fk-add" rows="6" placeholder="Тегі Аты&#10;Тегі Аты&#10;…"></textarea>
+        <div class="btns">
+          <button class="btn" type="button" data-act="add1">1-топқа қосу</button>
+          <button class="btn" type="button" data-act="add2">2-топқа қосу</button>
+          <button class="btn" type="button" data-act="alpha">Бәрін әліпби бойынша екіге бөлу</button>
+          <button class="btn" type="button" data-act="shuffle">Бәрін кездейсоқ бөлу</button>
+        </div>
+        <p class="ed-note">«Бөлу» батырмалары бәрін алады: топтардағыларды да, жоғарыдағы өрістегілерді де.</p>
+      </div>
+      <div class="ed-block">
+        <p class="ed-label">Бірінші кім барады</p>
+        <div class="ed-row"><span>Қазақстан тарихы, 30 қараша</span>
+          <div class="seg" data-key="startMon"><button type="button" data-val="1">1-топ</button><button type="button" data-val="2">2-топ</button></div></div>
+        <div class="ed-row"><span>Заң мен тәртіп, 4 желтоқсан</span>
+          <div class="seg" data-key="startFri"><button type="button" data-val="1">1-топ</button><button type="button" data-val="2">2-топ</button></div></div>
+        <p class="ed-note">Мереке немесе демалыс болса, жоғарыдағы кестеде сабақтың жанындағы «Болдырмау» батырмасын басыңыз.</p>
+      </div>
+    </div>
+    <div class="groups" id="fk-groups"></div>
+  </section>
+
+  <footer class="foot">
+    <div><p class="foot-sign">Біздің сынып ✌</p><p class="foot-note">Факультатив кезегі · 2026–2027 оқу жылы</p></div>
+  </footer>
+
+  <div class="bar" id="fk-bar" hidden>
+    <div class="bar-in">
+      <span id="fk-status"></span>
+      <div class="bar-btns">
+        <button class="btn" id="fk-cancel" type="button">Бас тарту</button>
+        <button class="btn primary" id="fk-save" type="button">Сақтау</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="application/json" id="fk-state">{"g1": ["Нурдаулет", "Амина", "Аслан", "Улту", "Алихан", "Нұрғали", "Султаналі", "Оділ", "Алия", "Батырхан", "Айбар", "Ажар", "Альмира", "Нурасыл"], "g2": ["Мансур", "Ибрахим", "Темірлан", "Казбек", "Шынгыс", "Алуа", "Алинур", "Дарын", "Абдулькарим", "Аяс", "Ақмарал", "Айдана"], "startMon": 1, "startFri": 2, "anchorMon": "2026-11-30", "anchorFri": "2026-12-04", "end": "2027-05-25", "cancelled": {"2026-12-28": "Қысқы демалыс", "2027-01-01": "Қысқы демалыс, Жаңа жыл", "2027-01-04": "Қысқы демалыс", "2027-03-08": "Халықаралық әйелдер күні", "2027-03-22": "Көктемгі демалыс", "2027-03-26": "Көктемгі демалыс", "2027-05-03": "Бірлік мерекесі (1 мамырдан ауыстырылған)", "2027-05-07": "Отан қорғаушылар күні", "2027-05-10": "Жеңіс күні (9 мамырдан ауыстырылған)"}}</script>
+<script id="fk-js">
+(function () {
+  'use strict';
+  var SHELL = document.getElementById('app').outerHTML;
+  var SKELETON = '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>\n';
+  var HEAD = '<title>Факультатив кезегі</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Unbounded:wght@500;700&family=Caveat:wght@600&display=swap">\n';
+
+  var DAY = 864e5, WEEK = 7 * DAY;
+  var MONTHS = ['қаңтар', 'ақпан', 'наурыз', 'сәуір', 'мамыр', 'маусым', 'шілде', 'тамыз', 'қыркүйек', 'қазан', 'қараша', 'желтоқсан'];
+  var WD = ['Жс', 'Дс', 'Сс', 'Ср', 'Бс', 'Жм', 'Сн'];
+  var SUBJ = {
+    kz: { name: 'Қазақстан тарихы', lesson: 8 },
+    law: { name: 'Заң мен тәртіп', lesson: 7 }
+  };
+
+  var now = new Date();
+  var TODAY = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+
+  var PAGE_URL = 'https://aliiasailaubek.github.io/hacknext/fakultativ/';
+  var ME_KEY = 'fk-me';
+  var saved = readState();
+  var state = clone(saved);
+  var me = loadMe();
+
+  function loadMe() { try { return localStorage.getItem(ME_KEY) || ''; } catch (e) { return ''; } }
+  function storeMe(v) { try { if (v) localStorage.setItem(ME_KEY, v); else localStorage.removeItem(ME_KEY); } catch (e) {} }
+  function myGroup() {
+    if (!me) return 0;
+    if (state.g1.indexOf(me) !== -1) return 1;
+    if (state.g2.indexOf(me) !== -1) return 2;
+    return 0;
+  }
+  function firstName(n) { var p = n.split(' '); return p.length > 1 ? p.slice(1).join(' ') : n; }
+  function setMe(n) { me = n; storeMe(n); render(); }
+  var editing = false, canEdit = false, api = null, busy = false, weeksShown = 8;
+
+  function $(id) { return document.getElementById(id); }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function D(s) { var p = String(s).split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]); }
+  function iso(t) { return new Date(t).toISOString().slice(0, 10); }
+  function dow(t) { return new Date(t).getUTCDay(); }
+  function weekStart(t) { return t - ((dow(t) + 6) % 7) * DAY; }
+  function fmt(t) { var d = new Date(t); return d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()]; }
+  function fmtDay(t) { return WD[dow(t)] + ', ' + fmt(t); }
+  function plural(n, a, b, c) { var m = n % 10, h = n % 100; if (m === 1 && h !== 11) return a; if (m >= 2 && m <= 4 && (h < 12 || h > 14)) return b; return c; }
+  function rel(t) { return t === TODAY ? 'Бүгін, ' : t === TODAY + DAY ? 'Ертең, ' : ''; }
+
+  function names(a) {
+    return Array.isArray(a) ? a.filter(function (x) { return typeof x === 'string' && x.trim(); }).map(function (x) { return x.trim().slice(0, 80); }) : [];
+  }
+  function readState() {
+    var s = {};
+    try { s = JSON.parse($('fk-state').textContent) || {}; } catch (e) { s = {}; }
+    var c = {};
+    if (s.cancelled && typeof s.cancelled === 'object') {
+      Object.keys(s.cancelled).forEach(function (k) { if (/^\d{4}-\d{2}-\d{2}$/.test(k)) c[k] = String(s.cancelled[k] || '').slice(0, 60); });
+    }
+    return {
+      g1: names(s.g1), g2: names(s.g2),
+      startMon: s.startMon === 2 ? 2 : 1, startFri: s.startFri === 1 ? 1 : 2,
+      anchorMon: s.anchorMon || '2026-11-30', anchorFri: s.anchorFri || '2026-12-04',
+      end: s.end || '2027-05-25', cancelled: c
+    };
+  }
+  function isDirty() { return JSON.stringify(state) !== JSON.stringify(saved); }
+
+  function h(tag, attrs, kids) {
+    var e = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      var v = attrs[k];
+      if (v == null || v === false) return;
+      if (k === 'class') e.className = v;
+      else if (k === 'text') e.textContent = v;
+      else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), v);
+      else e.setAttribute(k, v);
+    });
+    (kids || []).forEach(function (c) { if (c != null) e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return e;
+  }
+  function clear(el) { while (el.firstChild) el.removeChild(el.firstChild); return el; }
+
+  /* ---------- schedule model ---------- */
+  function build() {
+    var byDate = {}, list = { kz: [], law: [] };
+    [['kz', state.anchorMon, WEEK, state.startMon], ['law', state.anchorFri, 2 * WEEK, state.startFri]].forEach(function (c) {
+      var g = c[3];
+      for (var t = D(c[1]); t <= D(state.end); t += c[2]) {
+        var k = iso(t), off = Object.prototype.hasOwnProperty.call(state.cancelled, k);
+        var l = { t: t, k: k, subj: c[0], cancelled: off, reason: off ? state.cancelled[k] : '', group: null };
+        if (!off) { l.group = g; g = 3 - g; }
+        byDate[k] = l; list[c[0]].push(l);
+      }
+    });
+    var all = list.kz.concat(list.law).sort(function (a, b) { return a.t - b.t; });
+    return { byDate: byDate, list: list, all: all };
+  }
+  function nextOf(arr, pred) {
+    for (var i = 0; i < arr.length; i++) if (arr[i].t >= TODAY && !arr[i].cancelled && (!pred || pred(arr[i]))) return arr[i];
+    return null;
+  }
+  function count(g) { return state['g' + g].length + ' оқушы'; }
+
+  function badge(g, sub) {
+    return h('div', { class: 'gbadge g' + g }, [
+      h('span', { class: 'num', text: String(g), 'aria-hidden': 'true' }),
+      h('div', null, [h('div', { class: 'gname', text: g + '-топ' }), sub ? h('div', { class: 'gsub', text: sub }) : null])
+    ]);
+  }
+
+  /* ---------- render ---------- */
+  function render() {
+    var m = build();
+    renderNotice();
+    renderMe(m);
+    renderNext(m);
+    renderFound(m);
+    renderGroups(m);
+    renderWeeks(m);
+    renderEditor();
+  }
+
+  function renderNotice() {
+    var el = $('fk-notice'), a = D(state.anchorMon);
+    if (TODAY < weekStart(a)) {
+      var fri = weekStart(TODAY) + 4 * DAY;
+      clear(el).append(
+        h('b', { text: 'Осы аптада жұмада (' + fmt(fri) + ') Заң мен тәртіп сабағы жоқ.' }),
+        ' Кезек ' + fmt(a) + ', дүйсенбіден басталады.'
+      );
+      el.hidden = false;
+    } else el.hidden = true;
+  }
+
+  function renderMe(m) {
+    var sec = $('fk-me-sec'), box = clear($('fk-me'));
+    sec.hidden = !(state.g1.length + state.g2.length);
+    var g = myGroup();
+    if (!g) {
+      var sel = h('select', { id: 'fk-me-select', class: 'me-select' }, [h('option', { value: '', text: 'Есіміңді таңда…' })]);
+      [1, 2].forEach(function (gg) {
+        var og = h('optgroup', { label: gg + '-топ' });
+        state['g' + gg].slice().sort(function (a, b) { return a.localeCompare(b, 'kk'); }).forEach(function (n) {
+          og.append(h('option', { value: n, text: n }));
+        });
+        sel.append(og);
+      });
+      sel.addEventListener('change', function () { if (sel.value) setMe(sel.value); });
+      box.append(h('div', { class: 'me-pick' }, [
+        h('label', { for: 'fk-me-select', class: 'me-label', text: 'Сен кімсің, брат? Есіміңді бір рет таңда, сайт сенің сабақтарыңды бірден көрсетеді.' }),
+        sel
+      ]));
+      return;
+    }
+    var l = nextOf(m.all, function (x) { return x.group === g; });
+    box.append(h('div', { class: 'me-card g' + g }, [
+      h('div', { class: 'me-top' }, [
+        h('span', { class: 'num', text: String(g), 'aria-hidden': 'true' }),
+        h('div', null, [h('div', { class: 'me-hi', text: 'Сәлем, ' + firstName(me) + '!' }), h('div', { class: 'me-sub', text: 'Сен ' + g + '-топтасың' })])
+      ]),
+      h('p', { class: 'me-next' }, l
+        ? ['Келесі сабағың: ', h('b', { text: rel(l.t) + fmtDay(l.t) }), ' · ' + SUBJ[l.subj].name + ', ' + SUBJ[l.subj].lesson + '-сабақ']
+        : ['Бұл оқу жылында сабақ қалмады.']),
+      h('p', { class: 'me-note', text: 'Сенің сабақтарың төмендегі кестеде «сен» деп белгіленген.' }),
+      h('button', { class: 'btn tiny', type: 'button', text: 'Басқа есім таңдау', onclick: function () { setMe(''); } })
+    ]));
+  }
+
+  function chatText(l) {
+    var g = l.group, list = state['g' + g];
+    var lines = [
+      '📚 ' + rel(l.t) + fmtDay(l.t) + ', ' + SUBJ[l.subj].lesson + '-сабақ',
+      SUBJ[l.subj].name + ' факультативі',
+      'Баратын: ' + g + '-топ' + (list.length ? ' (' + list.length + ' оқушы)' : '')
+    ];
+    list.forEach(function (n, i) { lines.push((i + 1) + '. ' + n); });
+    lines.push('', 'Толық кесте: ' + PAGE_URL);
+    return lines.join('\n');
+  }
+  function copyText(text, btn, card) {
+    function fallback() {
+      var ta = card.querySelector('.copy-box');
+      if (!ta) {
+        ta = h('textarea', { class: 'copy-box', readonly: 'readonly', rows: '7', 'aria-label': 'Чатқа арналған мәтін' });
+        card.append(ta, h('p', { class: 'me-note', text: 'Мәтінді белгілеп, көшіріп алыңыз.' }));
+      }
+      ta.value = text; ta.focus(); ta.select();
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Көшірілді ✓';
+        setTimeout(function () { btn.textContent = 'Чатқа көшіру'; }, 2000);
+      }, fallback);
+    } catch (e) { fallback(); }
+  }
+
+  function renderNext(m) {
+    var box = clear($('fk-next'));
+    ['kz', 'law'].forEach(function (s) {
+      var l = nextOf(m.list[s]);
+      var card = h('div', { class: 'ncard' }, [h('div', { class: 'subj', text: SUBJ[s].name })]);
+      if (l) {
+        var btn = h('button', { class: 'btn tiny copy', type: 'button', text: 'Чатқа көшіру' });
+        btn.addEventListener('click', function () { copyText(chatText(l), btn, card); });
+        card.append(
+          h('div', { class: 'when' }, [h('b', { text: rel(l.t) + fmtDay(l.t) }), ' · ' + SUBJ[s].lesson + '-сабақ']),
+          badge(l.group, state['g' + l.group].length ? count(l.group) : ''),
+          btn
+        );
+      } else card.append(h('div', { class: 'when', text: 'Бұл оқу жылында сабақ қалмады.' }));
+      box.append(card);
+    });
+  }
+
+  function renderFound(m) {
+    var q = $('fk-find').value.trim().toLowerCase(), box = clear($('fk-found'));
+    if (q.length < 2) return;
+    var hits = [];
+    [1, 2].forEach(function (g) {
+      state['g' + g].forEach(function (n) { if (n.toLowerCase().indexOf(q) !== -1) hits.push({ n: n, g: g }); });
+    });
+    if (!hits.length) {
+      box.append(h('p', { class: 'none', text: state.g1.length + state.g2.length ? 'Мұндай есім тізімде жоқ. Дұрыс жазылғанын тексер.' : 'Топ тізімдері әлі толтырылмаған.' }));
+      return;
+    }
+    hits.slice(0, 6).forEach(function (x) {
+      var l = nextOf(m.all, function (l) { return l.group === x.g; });
+      box.append(h('div', { class: 'hit g' + x.g }, [
+        h('span', { class: 'num', text: String(x.g), 'aria-hidden': 'true' }),
+        h('div', null, [
+          h('div', { class: 'who', text: x.n + ' · ' + x.g + '-топ' }),
+          h('div', { class: 'nxt', text: l ? 'Келесі сабағың: ' + rel(l.t).toLowerCase() + fmtDay(l.t) + ', ' + SUBJ[l.subj].name + ' (' + SUBJ[l.subj].lesson + '-сабақ)' : 'Сабақ қалмады' })
+        ]),
+        x.n === me ? null : h('button', { class: 'btn tiny', type: 'button', text: 'Бұл мен',
+          onclick: function () { $('fk-find').value = ''; setMe(x.n); $('fk-me').scrollIntoView({ behavior: 'smooth', block: 'center' }); } })
+      ]));
+    });
+  }
+
+  function renderGroups(m) {
+    var box = clear($('fk-groups'));
+    [1, 2].forEach(function (g) {
+      var key = 'g' + g, other = 3 - g, list = state[key];
+      var l = nextOf(m.all, function (x) { return x.group === g; });
+      var card = h('div', { class: 'gcard' }, [
+        badge(g, count(g)),
+        h('p', { class: 'gnext' }, l ? ['Келесі жолы: ', h('b', { text: fmtDay(l.t) }), ', ' + SUBJ[l.subj].name] : ['Сабақ қалмады'])
+      ]);
+      if (!list.length) {
+        card.append(h('p', { class: 'empty', text: editing ? 'Оқушыларды жоғарыдағы өріске қосыңыз.' : 'Тізім әлі толтырылмаған.' }));
+      } else {
+        var ol = h('ol', { class: 'names' });
+        list.forEach(function (n, i) {
+          var li = h('li', null, [h('span', { class: 'nm' + (n === me ? ' me' : ''), text: n + (n === me ? ' (сен)' : '') })]);
+          if (editing) li.append(h('span', { class: 'acts' }, [
+            h('button', { class: 'btn tiny', type: 'button', text: '→ ' + other + '-топ', 'aria-label': n + ': ' + other + '-топқа ауыстыру',
+              onclick: function () { state[key].splice(i, 1); state['g' + other].push(n); render(); } }),
+            h('button', { class: 'btn tiny', type: 'button', text: '✕', 'aria-label': n + ': өшіру',
+              onclick: function () { state[key].splice(i, 1); render(); } })
+          ]));
+          ol.append(li);
+        });
+        card.append(ol);
+      }
+      box.append(card);
+    });
+  }
+
+  function row(l) {
+    var past = l.t < TODAY, s = SUBJ[l.subj];
+    var meta = l.cancelled ? (l.reason || 'Сабақ болмайды') + ' · кезек жылжымайды' : s.lesson + '-сабақ' + (past ? ' · өтті' : '');
+    var who = h('div', { class: 'who' }, [
+      l.cancelled ? h('span', { class: 'chip x', text: 'Сабақ жоқ' }) : h('span', { class: 'chip g' + l.group, text: l.group + '-топ' })
+    ]);
+    if (editing && !past) {
+      who.append(h('button', { class: 'btn tiny', type: 'button', text: l.cancelled ? 'Қайтару' : 'Болдырмау',
+        onclick: function () {
+          if (l.cancelled) delete state.cancelled[l.k]; else state.cancelled[l.k] = 'Сабақ болмайды';
+          render();
+        } }));
+    }
+    var mine = !l.cancelled && l.group === myGroup();
+    return h('div', { class: 'row' + (past ? ' past' : '') + (l.cancelled ? ' cancelled' : '') }, [
+      h('div', { class: 'date' }, [h('span', { class: 'dnum', text: String(new Date(l.t).getUTCDate()) }), h('span', { class: 'dwd', text: WD[dow(l.t)] })]),
+      h('div', { class: 'what' }, [h('div', { class: 's' }, [s.name, mine ? h('span', { class: 'you', text: 'сен' }) : null]), h('div', { class: 'm', text: meta })]),
+      who
+    ]);
+  }
+  function offRow(t) {
+    return h('div', { class: 'row off' + (t < TODAY ? ' past' : '') }, [
+      h('div', { class: 'date' }, [h('span', { class: 'dnum', text: String(new Date(t).getUTCDate()) }), h('span', { class: 'dwd', text: 'Жм' })]),
+      h('div', { class: 'what' }, [h('div', { class: 's', text: SUBJ.law.name }), h('div', { class: 'm', text: 'Бұл аптада өтпейді' })]),
+      h('div', { class: 'who' }, [h('span', { class: 'dash', text: '—' })])
+    ]);
+  }
+  function range(ws) {
+    var fri = ws + 4 * DAY, a = new Date(ws), b = new Date(fri);
+    return a.getUTCMonth() === b.getUTCMonth() ? a.getUTCDate() + '–' + fmt(fri) : fmt(ws) + ' – ' + fmt(fri);
+  }
+
+  function renderWeeks(m) {
+    var box = clear($('fk-weeks'));
+    var thisWs = weekStart(TODAY);
+    var start = Math.max(thisWs, weekStart(D(state.anchorMon)));
+    var last = weekStart(D(state.end));
+    var total = Math.floor((last - start) / WEEK) + 1;
+    for (var i = 0; i < Math.min(weeksShown, total); i++) {
+      var ws = start + i * WEEK, fri = ws + 4 * DAY;
+      var tag = ws === thisWs ? h('span', { class: 'tag', text: 'Осы апта' }) : ws === thisWs + WEEK ? h('span', { class: 'tag light', text: 'Келесі апта' }) : null;
+      var rows = h('div', { class: 'rows' });
+      if (m.byDate[iso(ws)]) rows.append(row(m.byDate[iso(ws)]));
+      if (m.byDate[iso(fri)]) rows.append(row(m.byDate[iso(fri)]));
+      else if (fri >= D(state.anchorMon)) rows.append(offRow(fri));
+      box.append(h('div', { class: 'week' }, [h('header', null, [h('h3', { text: range(ws) }), tag]), rows]));
+    }
+    $('fk-more').hidden = weeksShown >= total;
+  }
+
+  function renderEditor() {
+    $('fk-edit').hidden = !canEdit || editing;
+    $('fk-editor').hidden = !editing;
+    $('fk-bar').hidden = !editing;
+    document.querySelectorAll('.seg').forEach(function (seg) {
+      var key = seg.getAttribute('data-key');
+      seg.querySelectorAll('button').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(Number(b.getAttribute('data-val')) === state[key]));
+      });
+    });
+    if (editing && !busy) $('fk-status').textContent = isDirty() ? 'Сақталмаған өзгерістер бар' : 'Әзірге өзгеріс жоқ';
+  }
+
+  /* ---------- editing ---------- */
+  function parseAdd() {
+    return $('fk-add').value.split(/\r?\n/).map(function (s) {
+      return s.replace(/^\s*\d+[.)]?\s*/, '').replace(/\s+/g, ' ').trim().slice(0, 80);
+    }).filter(Boolean);
+  }
+  function uniq(list) {
+    var seen = {}, out = [];
+    list.forEach(function (n) { var k = n.toLowerCase(); if (!seen[k]) { seen[k] = 1; out.push(n); } });
+    return out;
+  }
+  function act(kind) {
+    var added = parseAdd();
+    if (kind === 'add1' || kind === 'add2') {
+      if (!added.length) { $('fk-add').focus(); return; }
+      var have = {};
+      state.g1.concat(state.g2).forEach(function (n) { have[n.toLowerCase()] = 1; });
+      var key = kind === 'add1' ? 'g1' : 'g2';
+      uniq(added).forEach(function (n) { if (!have[n.toLowerCase()]) state[key].push(n); });
+    } else {
+      var all = uniq(state.g1.concat(state.g2, added));
+      if (!all.length) { $('fk-add').focus(); return; }
+      if (kind === 'alpha') {
+        all.sort(function (a, b) { return a.localeCompare(b, 'kk'); });
+      } else {
+        for (var i = all.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = all[i]; all[i] = all[j]; all[j] = t; }
+      }
+      var half = Math.ceil(all.length / 2);
+      state.g1 = all.slice(0, half);
+      state.g2 = all.slice(half);
+      if (kind === 'shuffle') {
+        state.g1.sort(function (a, b) { return a.localeCompare(b, 'kk'); });
+        state.g2.sort(function (a, b) { return a.localeCompare(b, 'kk'); });
+      }
+    }
+    $('fk-add').value = '';
+    render();
+  }
+
+  function buildDoc() {
+    var json = JSON.stringify(state).replace(/</g, '\\u003c');
+    var css = $('fk-css').textContent, js = $('fk-js').textContent, end = '</' + 'script>';
+    return SKELETON + HEAD + '<style id="fk-css">' + css + '</style>\n' + SHELL +
+      '\n<script type="application/json" id="fk-state">' + json + end +
+      '\n<script id="fk-js">' + js + end + '</body></html>';
+  }
+  function status(t) { $('fk-status').textContent = t; }
+  function flash(t) { var f = $('fk-flash'); f.textContent = t; f.hidden = false; }
+
+  function save() {
+    if (busy) return;
+    if (!isDirty()) { editing = false; render(); return; }
+    busy = true;
+    $('fk-save').disabled = true;
+    status('Сақталуда…');
+    api.publish(buildDoc()).then(function () {
+      status('Сақталды. Бет қазір жаңарады.');
+    }).catch(function (e) {
+      busy = false;
+      $('fk-save').disabled = false;
+      var c = e && e.code;
+      if (c === 'conflict') status('Сізден бұрын біреу сақтап қойды. Бет жаңарады, өзгерістерді қайталаңыз.');
+      else if (c === 'rate_limited') status('Тым жиі. Бір минут күтіп, қайта сақтаңыз.');
+      else if (['not_writer', 'not_granted', 'consent_required', 'not_declared', 'capability_disabled', 'capability_removed'].indexOf(c) !== -1) {
+        canEdit = false; editing = false; state = clone(saved); render();
+        flash('Сізде тек көруге рұқсат бар, сондықтан өзгерістер сақталмады.');
+      } else status('Сақтау мүмкін болмады. Қайталап көріңіз.');
+    });
+  }
+
+  /* ---------- wiring ---------- */
+  $('fk-find').addEventListener('input', function () { renderFound(build()); });
+  $('fk-more').addEventListener('click', function () { weeksShown += 8; renderWeeks(build()); });
+  $('fk-edit').addEventListener('click', function () { editing = true; render(); $('fk-editor').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  $('fk-cancel').addEventListener('click', function () { if (busy) return; state = clone(saved); editing = false; render(); });
+  $('fk-save').addEventListener('click', save);
+  document.querySelectorAll('#fk-editor [data-act]').forEach(function (b) {
+    b.addEventListener('click', function () { act(b.getAttribute('data-act')); });
+  });
+  document.querySelectorAll('.seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      state[b.parentNode.getAttribute('data-key')] = Number(b.getAttribute('data-val'));
+      render();
+    });
+  });
+
+  var lastPhoto = null;
+  function closeLb() {
+    if (!$('fk-lb') || $('fk-lb').hidden) return;
+    $('fk-lb').hidden = true;
+    if (lastPhoto) lastPhoto.focus();
+  }
+  document.querySelectorAll('.snap').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var img = b.querySelector('img');
+      lastPhoto = b;
+      $('fk-lb-img').src = img.src;
+      $('fk-lb-img').alt = img.alt;
+      $('fk-lb-cap').textContent = b.getAttribute('data-cap') || '';
+      $('fk-lb').hidden = false;
+      $('fk-lb-close').focus();
+    });
+  });
+  
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+
+  render();
+
+  if (window.claude && typeof window.claude.use === 'function') {
+    var none = function () { return null; };
+    Promise.all([window.claude.use('artifact').catch(none), window.claude.use('user').catch(none)]).then(function (r) {
+      api = r[0];
+      var u = r[1];
+      if (!api || !u) return false;
+      return Promise.resolve(u.canEdit()).catch(function () { return false; });
+    }).then(function (ok) { canEdit = !!ok && !!api; render(); });
+  }
+})();
+</script>
+
+</body>
+</html>
